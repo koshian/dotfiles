@@ -1,0 +1,9 @@
+[core]
+	excludesfile = /Users/koshian/.gitignore
+
+[user]
+	name = "Sugano `Koshian' Yoshihisa(E)"
+	email = koshian@foxking.org
+
+[github]
+	user = koshian

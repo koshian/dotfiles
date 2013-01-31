@@ -1,0 +1,18 @@
+encoding	utf8
+escape		^z^z
+#escape		\176\176
+vbell		off
+#unsetenv	WINDOWID
+height		24
+defscrollback	2048
+bindkey -k kb stuff \010
+bindkey -k kD stuff \177
+#hardstatus alwayslastline "screen | %w"
+#hardstatus alwayslastline "%{= WK}%-Lw%{= BW}%50>%n%f* %t%{-}%+Lw%<"
+#idle 900 lockscreen
+bind ^x eval "echo 'Launch: [c:IRC][t:top][w:w3m][k:kernel config]'" "command -c lancher"
+bind -c lancher t screen top
+bind -c lancher w screen w3m
+bind -c lancher c screen mule -nw -f irchat
+bind -c lancher k screen sh -c 'cd /usr/src/linux; make menuconfig; $SHELL'
+bind -c lancher ^z command
