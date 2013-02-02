@@ -116,4 +116,7 @@ fi
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 
-. ~/.private_zshrc
+if [ -r ~/.private_zshrc ]; then
+	. ~/.private_zshrc
+fi
+
