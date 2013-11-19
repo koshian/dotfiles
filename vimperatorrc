@@ -1,0 +1,36 @@
+set hintchars=abcdefghijklmnopqrstuvwxyz
+
+" hatena bookmark
+js << EOM
+if (typeof hBookmark != 'undefined')
+    liberator.loadScript('chrome://hatenabookmark/content/vimperator/plugin/hatenabookmark.js', {__proto__: this});
+EOM
+
+" copy.js templetes
+javascript <<EOM
+liberator.globalVariables.copy_templates = [
+    {label: '0nly-url', value: '%URL%'},
+    {label:'UrlAndTitle', value:' %URL% %TITLE%'},
+    {label:'TitleAndUrl', value:'%TITLE% %URL% '},
+    {label:'hatena', value:'[%URL%:title=%TITLE%]'},
+    {label:'Hatena', value:'[%URL%:title=]'},
+    {label:'cite', value:">%URL%:title=%TITLE%>\\n%HTMLSEL%\\n<<"},
+    {label:'anchor', value:'[<a href="%URL%">%TITLE%</a>]'},
+//    {label:'tibet', value:':[http://eot.g.hatena.ne.jp/keyword/%E3%83%A1%E3%83%83%E3%82%BB%E3%83%BC%E3%82%B8:title=1日1チベットリンク]:[%URL%:title]'},
+    {label:'Title', value:'%TITLE%'},
+//    {label: 'twitter', value: ': %TITLE% %URL%'},
+    {label: 'ASIN', value: 'copy ASIN code from Amazon', custom: function() { return content.document.getElementById('ASIN').value}},
+    {label: 'asin', value: 'copy ASIN code from Amazon', custom: function() { return 'asin:' + content.document.getElementById('ASIN').value + ':detail'}},
+//    {label: 'wikiplus', value:'[[%TITLE%\>%URL%]]'},
+    { label: 'markdown', value: '[%TITLE%](%URL%)' },
+    {label: 'amazon', value: 'shortlink', custom: function() {var asin = content.document.getElementById('ASIN').value; var title = content.document.getElementById('btAsinTitle').innerHTML; return 'http://amazon.jp/dp/' + asin}},
+    {label: 'Amazon', value: 'affiliate link', custom: function() {var asin = content.document.getElementById('ASIN').value; var title = content.document.getElementById('btAsinTitle').innerHTML; return '[http://www.amazon.co.jp/exec/obidos/ASIN/' + asin + '/kitsune-22/ref=nosim/:title=' + title + ']'}},
+];
+EOM
+map y :copy<Space>
+
+" Hint style
+hi Hint z-index:5000; font-family:Menlo; font-size:14px; color:white; background-color:red; border-color:ButtonShadow; border-width:0px; border-style:solid; padding:0px 2px 0px 2px; position:absolute;
+
+" end
+echo "~/.vimperatorrc loaded."

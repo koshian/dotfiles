@@ -43,10 +43,10 @@ alias ggl=google
 
 # enveronment variables
 export EDITOR=vi
-export LANG=ja_JP.UTF-8
+export LANG=C
 export DLANG=ja_JP.UTF-8
 export LANGUAGE=ja_JP.UTF-8
-export LC_ALL=ja_JP.UTF-8
+export LC_MESSAGES=C
 export XMODIFIERS='@im=SCIM'
 export GTK_IM_MODULE=SCIM
 export QT_IM_MODULE=SCIM
@@ -113,7 +113,14 @@ if [ `uname` != 'Darwin' ]; then
   . ~/.keychain/`hostname`-sh
 fi
 
+### Add rbenv
+export RBENV_ROOT=/usr/local/var/rbenv
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 
-. ~/.private_zshrc
+if [ -f $HOME/.private_zshrc ]; then
+  . ~/.private_zshrc
+fi
+

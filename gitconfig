@@ -7,3 +7,5 @@
 
 [github]
 	user = koshian
+[push]
+	default = simple
