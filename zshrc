@@ -120,12 +120,7 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 
-<<<<<<< HEAD
-if [ -f $HOME/.private_zshrc ]; then
+if [ -r $HOME/.private_zshrc ]; then
   . ~/.private_zshrc
-=======
-if [ -r ~/.private_zshrc ]; then
-	. ~/.private_zshrc
->>>>>>> 5f85d888fbea95329894e3760720433843a6687d
 fi
 
