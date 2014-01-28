@@ -10,6 +10,7 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 zstyle ':completion:*' menu select=1
 
 autoload -U compinit && compinit
+autoload -Uz add-zsh-hook
 
 # options
 setopt BASH_AUTO_LIST
@@ -123,4 +124,12 @@ export PATH="/usr/local/heroku/bin:$PATH"
 if [ -r $HOME/.private_zshrc ]; then
   . ~/.private_zshrc
 fi
+
+### terminal notifier
+export SYS_NOTIFIER=`which terminal-notifier`
+export NOTIFIER_COMMNAND_TIMEOUT=10
+NOTIFY_PLUGIN=$HOME/src/zsh-notify/notify.plugin.zsh
+if [ -r $NOTIFY_PLUGIN ]; then
+  . $NOTIFY_PLUGIN
+fi 
 
