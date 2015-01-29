@@ -1,9 +1,13 @@
+# -*- encoding: utf-8 -*- 
 bindkey -e
 PATH=$HOME/bin:/usr/games:/sbin:/usr/sbin:/usr/local/sbin:/usr/local/bin:$PATH
 
 PS1=$'%n@%m:%~\n$ '
 RPS1=$'%D'
 
+## predict
+# autoload predict-on
+# predict-on
 
 ## 補完時に大小文字を区別しない
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
@@ -41,6 +45,10 @@ function google() {
 }
 alias ggl=google
 
+# backup file
+function mvdate() {
+  mv $1 $1.`date +%Y%m%d_%H%M%S`
+}
 
 # enveronment variables
 export EDITOR=vi
@@ -61,6 +69,8 @@ export SCSI_LUN=0
 export PAGER=lv
 export CVS_RSH=ssh
 export CVSROOT=$HOME/var/cvs
+export TORSOCKS_CONF_FILE=$HOME/etc/torsocks.conf
+
 if [ `uname` = 'Darwin' ]; then
   JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Home/
 else
@@ -114,13 +124,6 @@ if [ `uname` != 'Darwin' ]; then
   . ~/.keychain/`hostname`-sh
 fi
 
-### Add rbenv
-export RBENV_ROOT=/usr/local/var/rbenv
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
-
 if [ -r $HOME/.private_zshrc ]; then
   . ~/.private_zshrc
 fi
@@ -132,4 +135,9 @@ NOTIFY_PLUGIN=$HOME/src/zsh-notify/notify.plugin.zsh
 if [ -r $NOTIFY_PLUGIN ]; then
   . $NOTIFY_PLUGIN
 fi 
+
+### MacTeX
+if [ -e /usr/texbin ]; then
+  export PATH=/usr/texbin:"$PATH"
+fi
 
