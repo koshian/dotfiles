@@ -141,3 +141,12 @@ if [ -e /usr/texbin ]; then
   export PATH=/usr/texbin:"$PATH"
 fi
 
+
+### Use Brewed OpenSSL
+OPENSSL_PATH=/usr/local/opt/openssl
+if [ -d "$OPENSSL_PATH" ];then
+  export PATH=$OPENSSL_PATH/bin:$PATH
+  export LD_LIBRARY_PATH=$OPENSSL_PATH/lib:$LD_LIBRARY_PATH
+  export CPATH=$OPENSSL_PATH/include:$LD_LIBRARY_PATH
+fi
+
