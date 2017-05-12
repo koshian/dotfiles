@@ -73,10 +73,10 @@ export CONCURRENCY_LEVEL=6
 export DBIC_TRACE="1=/tmp/trace.out"
 
 # for git
-export GIT_AUTHOR_NAME='Sugano Yoshihisa(E)'
-export GIT_AUTHOR_EMAIL='koshian@foxking.org'
-export GIT_COMMITTER_NAME='Sugano Yoshihisa(E)'
-export GIT_COMMITTER_EMAIL='koshian@foxking.org'
+#export GIT_AUTHOR_NAME='Sugano Yoshihisa(E)'
+#export GIT_AUTHOR_EMAIL='koshian@foxking.org'
+#export GIT_COMMITTER_NAME='Sugano Yoshihisa(E)'
+#export GIT_COMMITTER_EMAIL='koshian@foxking.org'
 
 # aliases
 alias xemacs='LC_ALL=C LANG=C XMODIFIERS= xemacs'
@@ -123,4 +123,7 @@ export PATH="/usr/local/heroku/bin:$PATH"
 if [ -r $HOME/.private_zshrc ]; then
   . ~/.private_zshrc
 fi
+
+### Add yarn
+export PATH="$PATH:`yarn global bin`"
 
