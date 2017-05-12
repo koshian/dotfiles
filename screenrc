@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*- 
 encoding	utf8
 escape		^z^z
 #escape		\176\176
