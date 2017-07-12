@@ -2,7 +2,17 @@
 bindkey -e
 PATH=$HOME/bin:/usr/games:/sbin:/usr/sbin:/usr/local/sbin:/usr/local/bin:$PATH
 
-PS1=$'%n@%m:%~\n$ '
+if [ `uname` = 'Darwin' ]; then
+    ICON=`echo -n '\uf179'`
+elif [ `uname` = 'Linux' ]; then
+    ICON=`echo -n '\uf17c'`
+elif [ -n "`cat /proc/version | grep Microsoft`" ]; then
+    ICON=`echo -n '\uf17a'`
+else
+    ICON=`echo -n '\uf108'`
+fi
+
+PS1=`echo -en "%n@%m:${ICON}:%~\n$ "`
 RPS1=$'%D'
 
 ## predict
@@ -72,7 +82,8 @@ export CVSROOT=$HOME/var/cvs
 export TORSOCKS_CONF_FILE=$HOME/etc/torsocks.conf
 
 if [ `uname` = 'Darwin' ]; then
-  JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Home/
+  unset JAVA_HOME
+  #JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Home
 else
   JAVA_HOME=/usr/lib/j2sdk1.5-sun
 fi
@@ -84,10 +95,10 @@ export CONCURRENCY_LEVEL=6
 export DBIC_TRACE="1=/tmp/trace.out"
 
 # for git
-export GIT_AUTHOR_NAME='Sugano Yoshihisa(E)'
-export GIT_AUTHOR_EMAIL='koshian@foxking.org'
-export GIT_COMMITTER_NAME='Sugano Yoshihisa(E)'
-export GIT_COMMITTER_EMAIL='koshian@foxking.org'
+#export GIT_AUTHOR_NAME='Sugano Yoshihisa(E)'
+#export GIT_AUTHOR_EMAIL='koshian@foxking.org'
+#export GIT_COMMITTER_NAME='Sugano Yoshihisa(E)'
+#export GIT_COMMITTER_EMAIL='koshian@foxking.org'
 
 # aliases
 alias xemacs='LC_ALL=C LANG=C XMODIFIERS= xemacs'
@@ -150,3 +161,11 @@ if [ -d "$OPENSSL_PATH" ];then
   export CPATH=$OPENSSL_PATH/include:$LD_LIBRARY_PATH
 fi
 
+### Use go
+export GOPATH=$HOME/var/go
+export PATH=$PATH:/usr/local/opt/go/libexec/bin:$GOPATH/bin
+
+### swiftenv
+#export SWIFTENV_ROOT="$HOME/.swiftenv"
+#export PATH="$SWIFTENV_ROOT/bin:$PATH"
+#eval "$(swiftenv init -)"
