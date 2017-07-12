@@ -139,6 +139,9 @@ if [ -r $HOME/.private_zshrc ]; then
   . ~/.private_zshrc
 fi
 
+### Add yarn
+export PATH="$PATH:`yarn global bin`"
+
 ### terminal notifier
 export SYS_NOTIFIER=`which terminal-notifier`
 export NOTIFIER_COMMNAND_TIMEOUT=10
