@@ -13,7 +13,7 @@ else
 fi
 
 PS1=`echo -en "%n@%m:${ICON}:%~\n$ "`
-RPS1=$'%D'
+RPS1=$'%D{%a %b %d %Y}'
 
 ## predict
 # autoload predict-on
