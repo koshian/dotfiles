@@ -153,3 +153,8 @@ if [ -d "$OPENSSL_PATH" ];then
   export CPATH=$OPENSSL_PATH/include:$LD_LIBRARY_PATH
 fi
 
+### rbenv
+if [ `which rbenv` ]; then
+  eval "$(rbenv init -)"
+fi
+
