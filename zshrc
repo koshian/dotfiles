@@ -2,8 +2,18 @@
 bindkey -e
 PATH=$HOME/bin:/usr/games:/sbin:/usr/sbin:/usr/local/sbin:/usr/local/bin:$PATH
 
-PS1=$'%n@%m:%~\n$ '
-RPS1=$'%D'
+if [ `uname` = 'Darwin' ]; then
+    ICON=`echo -n '\uf179'`
+elif [ `uname` = 'Linux' ]; then
+    ICON=`echo -n '\uf17c'`
+elif [ -n "`cat /proc/version | grep Microsoft`" ]; then
+    ICON=`echo -n '\uf17a'`
+else
+    ICON=`echo -n '\uf108'`
+fi
+
+PS1=`echo -en "%n@%m:${ICON}:%~\n$ "`
+RPS1=$'%D{%a %b %d %Y}'
 
 ## predict
 # autoload predict-on
@@ -72,7 +82,8 @@ export CVSROOT=$HOME/var/cvs
 export TORSOCKS_CONF_FILE=$HOME/etc/torsocks.conf
 
 if [ `uname` = 'Darwin' ]; then
-  JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Home/
+  unset JAVA_HOME
+  #JAVA_HOME=/System/Library/Frameworks/JavaVM.framework/Home
 else
   JAVA_HOME=/usr/lib/j2sdk1.5-sun
 fi
@@ -154,7 +165,15 @@ if [ -d "$OPENSSL_PATH" ];then
 fi
 
 ### rbenv
-if [ `which rbenv` ]; then
+if [ -n `which rbenv` ]; then
   eval "$(rbenv init -)"
 fi
 
+### Use go
+export GOPATH=$HOME/var/go
+export PATH=$PATH:/usr/local/opt/go/libexec/bin:$GOPATH/bin
+
+### swiftenv
+#export SWIFTENV_ROOT="$HOME/.swiftenv"
+#export PATH="$SWIFTENV_ROOT/bin:$PATH"
+#eval "$(swiftenv init -)"
