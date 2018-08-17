@@ -140,7 +140,9 @@ if [ -r $HOME/.private_zshrc ]; then
 fi
 
 ### Add yarn
-export PATH="$PATH:`yarn global bin`"
+if [ -x "`which yarn`" ]; then
+  export PATH="$PATH:`yarn global bin`"
+fi
 
 ### terminal notifier
 export SYS_NOTIFIER=`which terminal-notifier`
@@ -165,7 +167,7 @@ if [ -d "$OPENSSL_PATH" ];then
 fi
 
 ### rbenv
-if [ -n `which rbenv` ]; then
+if [ -x "`which rbenv`" ]; then
   eval "$(rbenv init -)"
 fi
 
