@@ -179,3 +179,12 @@ export PATH=$PATH:/usr/local/opt/go/libexec/bin:$GOPATH/bin
 #export SWIFTENV_ROOT="$HOME/.swiftenv"
 #export PATH="$SWIFTENV_ROOT/bin:$PATH"
 #eval "$(swiftenv init -)"
+
+### PostgreSQL libraries on HomeBrew
+if [ `uname` = 'Darwin' ]; then
+  export PATH="/usr/local/opt/icu4c/bin:$PATH"
+  export PATH="/usr/local/opt/icu4c/sbin:$PATH"
+  export LDFLAGS="${LDFLAGS} -L/usr/local/opt/icu4c/lib"
+  export CPPFLAGS="${CPPFLAGS} -I/usr/local/opt/icu4c/include"
+fi
+
