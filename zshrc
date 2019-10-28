@@ -188,3 +188,12 @@ if [ `uname` = 'Darwin' ]; then
   export CPPFLAGS="${CPPFLAGS} -I/usr/local/opt/icu4c/include"
 fi
 
+### composer
+if [ -n `which composer` ]; then
+  export PATH="${HOME}/.composer/vendor/bin:$PATH"
+fi
+
+### aws-cli
+if [ -n `which aws` ]; then
+  . `which aws_zsh_completer.sh`
+fi
