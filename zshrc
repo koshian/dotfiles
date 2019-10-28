@@ -193,7 +193,6 @@ if [ -n `which composer` ]; then
   export PATH="${HOME}/.composer/vendor/bin:$PATH"
 fi
 
-
 ### aws-cli
 if [ -n `which aws` ]; then
   . `which aws_zsh_completer.sh`
