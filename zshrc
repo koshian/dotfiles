@@ -189,12 +189,14 @@ if [ `uname` = 'Darwin' ]; then
 fi
 
 ### composer
-if [ -n `which composer` ]; then
+if [ `type composer 2>&1 >/dev/null` ]; then
   export PATH="${HOME}/.composer/vendor/bin:$PATH"
 fi
 
 ### aws-cli
-if [ -n `which aws` ]; then
+if [ `type aws 2>&1 >/dev/null` ]; then
   . `which aws_zsh_completer.sh`
 fi
 
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
